@@ -30,8 +30,14 @@ namespace Split
                         // edge case ( not enough characters to look ahead ) ==> always false
                         if(sourceCharsLeft < delimiter.Length)
                         {
-                            // TODO(rafa): Cover this case with test
-                            throw new NotImplementedException();
+                            // Not delimiter match
+                            {
+                                sb.Append(current);
+                                if (sourceIdx == (source.Length - 1))
+                                {
+                                    fragments.Add(sb.ToString());
+                                }
+                            }
                         }
                         // common case ( enough characters to look ahead ) ==> compare all characters
                         else

@@ -54,6 +54,12 @@ namespace Tests
             AssertSplit("abcbd", "bc", "a", "bd");
         }
 
+        [Test]
+        public void Split_DelimiterCandidateWillGoOutOfBounds_DoesNotFail()
+        {
+            AssertSplit("abaab", "baa", "a","b");
+        }
+
         private void AssertSplit(string source, string delimiter, params string[] expectedResult)
         {
             var result = StringEx.Split(source, delimiter);
