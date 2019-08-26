@@ -1,7 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Split", "Split\Split.csproj", "{E781FBA2-682B-4395-9B97-BEE90787A44C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{EE45F6E9-2E82-429D-8C0F-5A4A91B3247A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Split", "Split\Split.csproj", "{68D88EF5-21A4-4613-8FD0-0C71C902C77F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E781FBA2-682B-4395-9B97-BEE90787A44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E781FBA2-682B-4395-9B97-BEE90787A44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E781FBA2-682B-4395-9B97-BEE90787A44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E781FBA2-682B-4395-9B97-BEE90787A44C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE45F6E9-2E82-429D-8C0F-5A4A91B3247A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE45F6E9-2E82-429D-8C0F-5A4A91B3247A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE45F6E9-2E82-429D-8C0F-5A4A91B3247A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE45F6E9-2E82-429D-8C0F-5A4A91B3247A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68D88EF5-21A4-4613-8FD0-0C71C902C77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68D88EF5-21A4-4613-8FD0-0C71C902C77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68D88EF5-21A4-4613-8FD0-0C71C902C77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68D88EF5-21A4-4613-8FD0-0C71C902C77F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
