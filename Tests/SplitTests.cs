@@ -36,10 +36,16 @@ namespace Tests
         }
 
         [Test]
-
         public void Split_AdjacentDelimiters_ProduceNoEmptyFragments()
         {
             AssertSplit("a,,,b",",","a","b");
+        }
+
+        [Test]
+        public void Split_BeginningAndEndingDelimiters_ProduceNoEmptyFragments()
+        {
+            AssertSplit(",,,x,y", ",", "x", "y");
+            AssertSplit("x,y,,,", ",", "x", "y");
         }
 
         private void AssertSplit(string source, string delimiter, params string[] expectedResult)

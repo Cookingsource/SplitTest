@@ -26,8 +26,11 @@ namespace Split
                     // Detect whether match ( for long matches )
 
                     // If match, close and store fragment until now, and skip match
-                    fragments.Add(sb.ToString());
-                    sb.Clear();
+                    if(sb.Length > 0)
+                    {
+                        fragments.Add(sb.ToString());
+                        sb.Clear();
+                    }
                 }
                 else
                 {
