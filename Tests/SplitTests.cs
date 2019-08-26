@@ -56,6 +56,13 @@ namespace Tests
             AssertSplit("abaab", "baa", "a","b");
         }
 
+        [Test]
+        public void Split_AllMatches_ReturnsEmptyArray()
+        {
+            var expected = new string[0];
+            AssertSplit("....", ".", expected);
+        }
+
         private void AssertSplit(string source, string delimiter, params string[] expectedResult)
         {
             
