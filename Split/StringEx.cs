@@ -15,82 +15,69 @@ namespace Split
                 return new string[] { source };
 
             List<string> fragments = new List<string>();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder fragmentBuilder = new StringBuilder();
 
             for( int sourceIdx = 0; sourceIdx < source.Length; sourceIdx++)
             {
                 char current = source[sourceIdx];
 
-                if(current == delimiter [0] )
+                void AppendToFragment(char character)
+                {
+                    fragmentBuilder.Append(character);
+                    if(sourceIdx == (source.Length -1))
+                    {
+                        fragments.Add(fragmentBuilder.ToString());
+                    }
+                }
+
+                void StoreCurrentFragment()
+                {
+                    if (fragmentBuilder.Length > 0)
+                    {
+                        fragments.Add(fragmentBuilder.ToString());
+                        fragmentBuilder.Clear();
+                    }
+                }
+
+                
+                int sourceCharsLeft = source.Length - sourceIdx;
+
+                if( sourceCharsLeft >= delimiter.Length && current == delimiter [0] )
                 {
                     if(delimiter.Length > 1)
                     {
-                        int sourceCharsLeft = source.Length - sourceIdx;
-
-                        // edge case ( not enough characters to look ahead ) ==> always false
-                        if(sourceCharsLeft < delimiter.Length)
+                        bool completeMatch = true;
+                        for( int delimiterIdx = 1; delimiterIdx < delimiter.Length; delimiterIdx++)
                         {
-                            // Not delimiter match
+                            bool partialMatch = delimiter[delimiterIdx] == source[sourceIdx + delimiterIdx];
+                            if(!partialMatch)
                             {
-                                sb.Append(current);
-                                if (sourceIdx == (source.Length - 1))
-                                {
-                                    fragments.Add(sb.ToString());
-                                }
+                                completeMatch = false;
+                                break;
                             }
                         }
-                        // common case ( enough characters to look ahead ) ==> compare all characters
+
+                        if (completeMatch)
+                        {
+                            // Note(rafa): -1 is needed because current index is already skipped
+                            // If match, close and store fragment until now, and skip match
+                            sourceIdx += delimiter.Length - 1;
+                            StoreCurrentFragment();
+                        }
                         else
                         {
-                            bool completeMatch = true;
-                            for( int delimiterIdx = 1; delimiterIdx < delimiter.Length; delimiterIdx++)
-                            {
-                                bool partialMatch = delimiter[delimiterIdx] == source[sourceIdx + delimiterIdx];
-                                if(!partialMatch)
-                                {
-                                    completeMatch = false;
-                                    break;
-                                }
-                            }
-
-                            if (completeMatch)
-                            {
-                                // Note(rafa): -1 is needed because current index is already skipped
-                                sourceIdx += delimiter.Length - 1;
-                                // If match, close and store fragment until now, and skip match
-                                if (sb.Length > 0)
-                                {
-                                    fragments.Add(sb.ToString());
-                                    sb.Clear();
-                                }
-                            }
-                            else // Not delimiter match
-                            {
-                                sb.Append(current);
-                                if (sourceIdx == (source.Length - 1))
-                                {
-                                    fragments.Add(sb.ToString());
-                                }
-                            }
+                            AppendToFragment(current);
                         }
+                        
                     }
                     else
                     {
-                        // If match, close and store fragment until now, and skip match
-                        if(sb.Length > 0)
-                        {
-                            fragments.Add(sb.ToString());
-                            sb.Clear();
-                        }
+                        StoreCurrentFragment();
                     }
                 }
                 else // Not delimiter match
                 {
-                    sb.Append(current);
-                    if (sourceIdx == (source.Length - 1))
-                    {
-                        fragments.Add(sb.ToString());
-                    }
+                    AppendToFragment(current);
                 }
             }
 

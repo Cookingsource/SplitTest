@@ -7,10 +7,6 @@ namespace Tests
 {
     public class SplitTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
 
         [Test]
         public void Split_NullSource_Fails()
@@ -62,6 +58,7 @@ namespace Tests
 
         private void AssertSplit(string source, string delimiter, params string[] expectedResult)
         {
+            
             var result = StringEx.Split(source, delimiter);
             CollectionAssert.AreEqual(
                 expectedResult,
