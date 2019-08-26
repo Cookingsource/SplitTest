@@ -29,11 +29,25 @@ namespace Tests
             AssertSplit(source, string.Empty, source);
         }
 
+        [Test]
+        public void Split_SingleCharDelimiter_DelimiterRemovedAndFragmentsReturned()
+        {
+            AssertSplit("a,b,c", ",", "a", "b", "c");
+        }
+
+        [Test]
+
+        public void Split_AdjacentDelimiters_ProduceNoEmptyFragments()
+        {
+            AssertSplit("a,,,b",",","a","b");
+        }
+
         private void AssertSplit(string source, string delimiter, params string[] expectedResult)
         {
+            var result = StringEx.Split(source, delimiter);
             CollectionAssert.AreEqual(
                 expectedResult,
-                StringEx.Split(source, delimiter));
+                result);
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace Split
 {
     public class StringEx
@@ -11,7 +14,32 @@ namespace Split
             if (delimiter == null || delimiter == string.Empty )
                 return new string[] { source };
 
-            throw new NotImplementedException();
+            List<string> fragments = new List<string>();
+            StringBuilder sb = new StringBuilder();
+            for( int sourceIdx = 0; sourceIdx < source.Length; sourceIdx++)
+            {
+                char current = source[sourceIdx];
+
+                if(current == delimiter [0] )
+                {
+                    int skipSize = 1; // NOTE(rafa): only for single char delimiters
+                    // Detect whether match ( for long matches )
+
+                    // If match, close and store fragment until now, and skip match
+                    fragments.Add(sb.ToString());
+                    sb.Clear();
+                }
+                else
+                {
+                    sb.Append(current);
+                    if (sourceIdx == (source.Length - 1))
+                    {
+                        fragments.Add(sb.ToString());
+                    }
+                }
+            }
+
+            return fragments.ToArray();
         }
     }
 }
