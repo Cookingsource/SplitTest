@@ -48,6 +48,12 @@ namespace Tests
             AssertSplit("x,y,,,", ",", "x", "y");
         }
 
+        [Test]
+        public void Split_MultipleCharDelimiter_DelimiterRemovedAndFragmentsReturned()
+        {
+            AssertSplit("abcbd", "bc", "a", "bd");
+        }
+
         private void AssertSplit(string source, string delimiter, params string[] expectedResult)
         {
             var result = StringEx.Split(source, delimiter);
